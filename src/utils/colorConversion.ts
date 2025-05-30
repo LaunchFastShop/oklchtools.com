@@ -242,3 +242,70 @@ export function formatRgb(rgb: RGBColor): string {
 export function formatHex(hex: string): string {
   return hex.startsWith("#") ? hex : `#${hex}`;
 }
+
+// Convert hex to HSL
+export const hexToHsl = (hex: string): HSLColor => {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h = 0,
+    s = 0;
+  const l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100),
+  };
+};
+
+// Clean text to extract HSL patterns
+export const cleanText = (text: string): string => {
+  // Look for HSL patterns using regex and extract them
+  const hslPatterns = [
+    // Match hsl(h, s%, l%) format
+    /hsl\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*\)/gi,
+    // Match h, s%, l% format
+    /(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%/g,
+    // Match h s% l% format (space separated)
+    /(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)%/g,
+    // Match just numbers that could be h s l
+    /(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)/g,
+  ];
+
+  const foundColors: string[] = [];
+
+  hslPatterns.forEach((pattern) => {
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      const h = match[1];
+      const s = match[2];
+      const l = match[3];
+      foundColors.push(`hsl(${h}, ${s}%, ${l}%)`);
+    }
+  });
+
+  // Remove duplicates and return
+  return [...new Set(foundColors)].join("\n");
+};

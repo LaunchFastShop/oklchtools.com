@@ -16,7 +16,7 @@ const OKLCHInfo = () => {
               <Palette size={32} />
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl text-gray-900 mb-4">
+          <h1 className="text-5xl md:text-6xl text-primary-600 font-semibold mb-4">
             What is OKLCH?
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -251,14 +251,14 @@ const OKLCHInfo = () => {
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Chrome
                         </span>
-                        <span className="text-gray-600">111+ (March 2023)</span>
+                        <span className="text-gray-600">111+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Edge
                         </span>
-                        <span className="text-gray-600">111+ (March 2023)</span>
+                        <span className="text-gray-600">111+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
@@ -274,14 +274,14 @@ const OKLCHInfo = () => {
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Firefox
                         </span>
-                        <span className="text-gray-600">113+ (May 2023)</span>
+                        <span className="text-gray-600">113+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Opera
                         </span>
-                        <span className="text-gray-600">97+ (2023)</span>
+                        <span className="text-gray-600">97+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
@@ -303,35 +303,35 @@ const OKLCHInfo = () => {
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Chrome Android
                         </span>
-                        <span className="text-gray-600">136+ (Current)</span>
+                        <span className="text-gray-600">136+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Safari iOS
                         </span>
-                        <span className="text-gray-600">15.4+ (2022)</span>
+                        <span className="text-gray-600">15.4+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Samsung Internet
                         </span>
-                        <span className="text-gray-600">22+ (2024)</span>
+                        <span className="text-gray-600">22+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Firefox Android
                         </span>
-                        <span className="text-gray-600">137+ (Current)</span>
+                        <span className="text-gray-600">137+</span>
                       </li>
                       <li className="flex items-center justify-between">
                         <span className="flex items-center">
                           <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                           Android Browser
                         </span>
-                        <span className="text-gray-600">136+ (Current)</span>
+                        <span className="text-gray-600">136+</span>
                       </li>
                     </ul>
                   </div>

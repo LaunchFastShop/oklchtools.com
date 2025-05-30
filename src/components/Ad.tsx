@@ -5,12 +5,17 @@ export const Ad = () => {
   return (
     <Card className="border shadow-2xl rounded-4xl bg-gradient-to-r from-primary-100/70 via-primary-50 to-primary-100/70 backdrop-blur-lg text-white overflow-hidden w-full">
       <CardContent className="p-8 text-center">
-        <h3 className="text-3xl font-playfair mb-4 text-primary">
-          LaunchFast.shop
+        <h3 className="text-3xl mb-4 text-primary-600 font-semibold">
+          Launch your startup <br />
+          in{" "}
+          <span className="font-playfair px-1 text-primary-700 italic">
+            Record
+          </span>{" "}
+          time
         </h3>
-        <p className="text-primary mb-6 text-xl">
-          Hire Senior Product Engineer on a{" "}
-          <span className="font-playfair italic font-medium">fractional</span>
+        <p className="text-primary mb-6 max-w-2xl mx-auto text-xl">
+          LaunchFast.shop - MVP development and fractional development support
+          for small teams and solo founders
         </p>
         <Button
           size="lg"
