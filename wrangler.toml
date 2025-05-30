@@ -1,0 +1,14 @@
+name = "oklch-tools"
+compatibility_date = "2025-05-10"
+
+[assets]
+not_found_handling = "single-page-application"
+directory = "./dist/"
+
+
+[observability.logs]
+enabled = true
+
+[vars]
+VITE_PUBLIC_POSTHOG_KEY = "phc_qDoM8IsZ2ZHVLUYAJ91Ckr3fvL55MEz56WFiJsKvyOZ"
+VITE_PUBLIC_POSTHOG_HOST = "https://us.i.posthog.com"
