@@ -23,7 +23,7 @@ export const Ad = () => {
           className="rounded-full border-primary bg-gradient-to-r text-primary from-primary-200/50 via-primary-300/50 to-primary-200/50"
           onClick={() => (window.location.href = "https://launchfast.shop")}
         >
-          Learn more
+          Click to launch your MVP in 4 weeks
         </Button>
       </CardContent>
     </Card>
