@@ -6,7 +6,7 @@ export const Ad = () => {
     <Card className="border shadow-2xl rounded-4xl bg-gradient-to-r from-primary-100/70 via-primary-50 to-primary-100/70 backdrop-blur-lg text-white overflow-hidden w-full">
       <CardContent className="p-8 text-center">
         <h3 className="text-3xl mb-4 text-primary-600 font-semibold">
-          Launch your startup <br />
+          Launch your MVP <br />
           in{" "}
           <span className="font-playfair px-1 text-primary-700 italic">
             Record

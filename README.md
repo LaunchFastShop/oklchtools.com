@@ -3,7 +3,7 @@
 <div align="center">
   <img src="public/logo-launchfast.png" alt="LaunchFast.shop" width="200" />
   
-  ### Launch your startup in *Record* time
+  ### Launch your MVP in *Record* time
   
   **LaunchFast.shop** - MVP development and fractional development support for small teams and solo founders
   
