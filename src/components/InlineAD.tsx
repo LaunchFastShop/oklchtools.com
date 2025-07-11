@@ -13,10 +13,13 @@ const InlineAD: React.FC = () => {
   }, []);
 
   return (
-    <div
+    <a
       className={`cursor-pointer fixed bottom-10 z-50 hover:scale-105 transition-all duration-300 ${
         isVisible ? "right-2 animate-slide-in-right" : "right-[-300px]"
       }`}
+      href="https://launchfast.shop?ref=oklchtools"
+      rel="dofollow"
+      target="_blank"
     >
       <div className="relative overflow-hidden rounded-2xl shadow-lg backdrop-blur-sm max-w-xs">
         <div
@@ -45,7 +48,7 @@ const InlineAD: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
