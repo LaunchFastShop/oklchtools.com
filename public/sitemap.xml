@@ -3,13 +3,13 @@
   <!-- Main pages -->
   <url>
     <loc>https://oklchtools.com/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/what-is-oklch</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -17,31 +17,31 @@
   <!-- Converter pages -->
   <url>
     <loc>https://oklchtools.com/oklch-to-hex</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/hex-to-oklch</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/oklch-color-picker</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/rgb-to-oklch</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/hsl-to-oklch</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -49,91 +49,91 @@
   <!-- Specific color conversion pages -->
   <url>
     <loc>https://oklchtools.com/color/000000</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/000</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/ffffff</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/fff</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/ff0000</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/f00</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/00ff00</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/0f0</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/0000ff</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/00f</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/808080</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/c0c0c0</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/ffff00</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/ff00ff</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/00ffff</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -141,19 +141,19 @@
   <!-- Brand colors -->
   <url>
     <loc>https://oklchtools.com/color/3366cc</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/1da1f2</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://oklchtools.com/color/4267b2</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2025-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
