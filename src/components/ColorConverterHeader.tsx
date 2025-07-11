@@ -1,28 +1,38 @@
 import React from "react";
-import { Palette } from "lucide-react";
+import { Palette, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
-const ColorConverterHeader: React.FC = () => {
+const ColorConverterHeader: React.FC<{
+  title: string;
+  description?: string;
+  withBackButton?: boolean;
+}> = ({ title, description, withBackButton = false }) => {
   return (
-    <div className="text-center mb-12">
-      <div className="flex items-center justify-center mb-6">
-        <div className="bg-primary text-primary-foreground p-4 rounded-4xl mr-4">
-          <Palette size={32} />
-        </div>
-      </div>
-      <h1 className="text-5xl md:text-6xl text-primary-600 font-satoshi font-semibold mb-4">
-        OKLCH color converter
+    <div className="mb-12 flex flex-col justify-start items-start">
+      <h1 className="flex items-center text-2xl md:text-3xl text-primary-600 text-left font-satoshi font-semibold">
+        <Palette
+          className="inline-block mr-4 bg-primary text-primary-foreground p-2 rounded-full"
+          size={40}
+        />
+        {title}
       </h1>
-      <Link
-        to="/what-is-oklch"
-        className="inline-block text-primary hover:text-primary-600 font-medium text-lg mb-6 underline decoration-2 underline-offset-4 hover:decoration-primary-600 transition-colors"
-      >
-        What is OKLCH?
-      </Link>
-      <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        Convert your HSL, RGB, and Hex colors to modern OKLCH format with
-        precision.
-      </p>
+      {description && (
+        <p className="pl-12 text-xl text-gray-600 max-w-2xl leading-relaxed mb-6 text-left">
+          {description}
+        </p>
+      )}
+      {withBackButton && (
+        <Link to="/">
+          <Button
+            variant="outline"
+            className="rounded-3xl border-primary text-primary hover:bg-primary hover:text-white"
+          >
+            <ArrowLeft size={16} className="mr-2" />
+            All Converters
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

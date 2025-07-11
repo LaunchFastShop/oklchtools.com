@@ -10,12 +10,14 @@ interface ColorPickerProps {
   pickedColor: string;
   onColorPick: (color: string) => void;
   getPickedColorOklch: () => OKLCHColor;
+  className?: string;
 }
 
 export const ColorPicker: React.FC<ColorPickerProps> = ({
   pickedColor,
   onColorPick,
   getPickedColorOklch,
+  className,
 }) => {
   const { toast } = useToast();
 
@@ -35,54 +37,54 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
           OKLCH Color Picker
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="relative">
-            <input
-              type="color"
-              value={pickedColor}
-              onChange={(e) => onColorPick(e.target.value)}
-              className="w-24 h-24 rounded-3xl border-4 border-white shadow-lg cursor-pointer"
-            />
-            <div className="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-full">
-              <Pipette size={16} />
-            </div>
+      <CardContent
+        className={`space-y-6 flex flex-col items-center space-y-4 ${className}`}
+      >
+        <div className="relative">
+          <input
+            type="color"
+            value={pickedColor}
+            onChange={(e) => onColorPick(e.target.value)}
+            className="w-24 h-24 rounded-3xl border-4 border-white shadow-lg cursor-pointer mx-auto"
+          />
+          <div className="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-full">
+            <Pipette size={16} />
+          </div>
+        </div>
+
+        <div className="w-full space-y-3">
+          <div className="bg-gray-50 rounded-3xl p-4">
+            <Badge variant="secondary" className="text-xs rounded-xl mb-2">
+              Selected Color
+            </Badge>
+            <p className="font-mono text-sm text-gray-600 text-center">
+              {pickedColor}
+            </p>
           </div>
 
-          <div className="w-full space-y-3">
-            <div className="bg-gray-50 rounded-3xl p-4">
-              <Badge variant="secondary" className="text-xs rounded-xl mb-2">
-                Selected Color
-              </Badge>
-              <p className="font-mono text-sm text-gray-600 text-center">
-                {pickedColor}
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-3xl p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex-1 min-w-0 mr-2">
-                  <Badge
-                    variant="secondary"
-                    className="text-xs rounded-xl mb-2 bg-primary text-white"
-                  >
-                    OKLCH
-                  </Badge>
-                  <p className="font-mono text-sm text-gray-900">
-                    {formatOklch(getPickedColorOklch())}
-                  </p>
-                </div>
-                <Button
-                  onClick={() =>
-                    copyToClipboard(formatOklch(getPickedColorOklch()))
-                  }
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0 rounded-xl hover:bg-primary hover:text-white"
+          <div className="bg-gray-50 rounded-3xl p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex-1 min-w-0 mr-2">
+                <Badge
+                  variant="secondary"
+                  className="text-xs rounded-xl mb-2 bg-primary text-white"
                 >
-                  <Copy size={14} />
-                </Button>
+                  OKLCH
+                </Badge>
+                <p className="font-mono text-sm text-gray-900">
+                  {formatOklch(getPickedColorOklch())}
+                </p>
               </div>
+              <Button
+                onClick={() =>
+                  copyToClipboard(formatOklch(getPickedColorOklch()))
+                }
+                variant="ghost"
+                size="sm"
+                className="h-8 w-8 p-0 rounded-xl hover:bg-primary hover:text-white"
+              >
+                <Copy size={14} />
+              </Button>
             </div>
           </div>
         </div>

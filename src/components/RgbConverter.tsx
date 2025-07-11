@@ -164,8 +164,8 @@ rgb(0, 0, 255)
       <CardContent className="flex flex-col flex-1 space-y-6">
         <div className="flex-1 flex flex-col">
           <Textarea
-            placeholder={`Paste your RGB colors here, one per line:
-${exampleColors}`}
+            placeholder={`Paste your RGB colors here, one per line: ${exampleColors}`}
+            rows={10}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 text-sm border-2 border-gray-200 rounded-3xl focus:border-red-500 transition-colors resize-none font-mono bg-gradient-to-br from-red-50 to-red-100"

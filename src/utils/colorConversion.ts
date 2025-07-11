@@ -309,3 +309,129 @@ export const cleanText = (text: string): string => {
   // Remove duplicates and return
   return [...new Set(foundColors)].join("\n");
 };
+
+// Reverse conversion functions: OKLCH to RGB/HEX
+
+// Convert OKLCH to OKLab
+function oklchToOklab(oklch: OKLCHColor): [number, number, number] {
+  const l = oklch.l / 100;
+  const c = oklch.c / 0.4;
+  const h = (oklch.h * Math.PI) / 180;
+
+  const a = c * Math.cos(h);
+  const b = c * Math.sin(h);
+
+  return [l, a, b];
+}
+
+// Convert OKLab to linear RGB
+function oklabToLinearRgb(
+  l: number,
+  a: number,
+  b: number
+): [number, number, number] {
+  const l_ = l + 0.3963377774 * a + 0.2158037573 * b;
+  const m_ = l - 0.1055613458 * a - 0.0638541728 * b;
+  const s_ = l - 0.0894841775 * a - 1.291485548 * b;
+
+  const l3 = l_ * l_ * l_;
+  const m3 = m_ * m_ * m_;
+  const s3 = s_ * s_ * s_;
+
+  return [
+    +4.0767416621 * l3 - 3.3077115913 * m3 + 0.2309699292 * s3,
+    -1.2684380046 * l3 + 2.6097574011 * m3 - 0.3413193965 * s3,
+    -0.0041960863 * l3 - 0.7034186147 * m3 + 1.707614701 * s3,
+  ];
+}
+
+// Convert linear RGB to sRGB
+function linearToSrgb(c: number): number {
+  const abs = Math.abs(c);
+  if (abs > 0.0031308) {
+    return (c < 0 ? -1 : 1) * (1.055 * Math.pow(abs, 1 / 2.4) - 0.055);
+  }
+  return 12.92 * c;
+}
+
+// Convert OKLCH to RGB
+export function oklchToRgb(oklch: OKLCHColor): RGBColor {
+  const [l, a, b] = oklchToOklab(oklch);
+  const [linearR, linearG, linearB] = oklabToLinearRgb(l, a, b);
+
+  const r = Math.round(Math.max(0, Math.min(255, linearToSrgb(linearR) * 255)));
+  const g = Math.round(Math.max(0, Math.min(255, linearToSrgb(linearG) * 255)));
+  const b_val = Math.round(
+    Math.max(0, Math.min(255, linearToSrgb(linearB) * 255))
+  );
+
+  return { r, g, b: b_val };
+}
+
+// Convert RGB to HEX
+export function rgbToHex(rgb: RGBColor): string {
+  const toHex = (n: number) => {
+    const hex = Math.round(n).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+
+  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`.toUpperCase();
+}
+
+// Convert OKLCH to HEX
+export function oklchToHex(oklch: OKLCHColor): string {
+  const rgb = oklchToRgb(oklch);
+  return rgbToHex(rgb);
+}
+
+// Parse OKLCH string and extract OKLCH values
+export function parseOklchString(oklchString: string): OKLCHColor | null {
+  // Remove any whitespace and convert to lowercase
+  const cleaned = oklchString.trim().toLowerCase();
+
+  // Match patterns like "oklch(92.8% 0.006 264.531)" or "92.8% 0.006 264.531" or "92.8 0.006 264.531"
+  const oklchRegex =
+    /(?:oklch\()?(\d+(?:\.\d+)?)%?\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\)?/;
+  const match = cleaned.match(oklchRegex);
+
+  if (!match) return null;
+
+  const l = parseFloat(match[1]);
+  const c = parseFloat(match[2]);
+  const h = parseFloat(match[3]);
+
+  // Validate ranges
+  if (l < 0 || l > 100 || c < 0 || h < 0 || h >= 360) {
+    return null;
+  }
+
+  return { l, c, h };
+}
+
+// Clean text to extract OKLCH patterns
+export const cleanOklchText = (text: string): string => {
+  // Look for OKLCH patterns using regex and extract them
+  const oklchPatterns = [
+    // Match oklch(l% c h) format
+    /oklch\(\s*(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s*\)/gi,
+    // Match l% c h format
+    /(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)/g,
+    // Match l c h format (without %)
+    /(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)/g,
+  ];
+
+  const foundColors: string[] = [];
+
+  oklchPatterns.forEach((pattern) => {
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      const l = match[1];
+      const c = match[2];
+      const h = match[3];
+      foundColors.push(`oklch(${l}% ${c} ${h})`);
+    }
+  });
+
+  // Remove duplicates and return
+  return [...new Set(foundColors)].join("\n");
+};

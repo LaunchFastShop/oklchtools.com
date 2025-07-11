@@ -6,60 +6,38 @@ import { Badge } from "@/components/ui/badge";
 import { Copy, Wand2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
-  parseHexString,
-  hexToOklch,
-  formatHex,
+  parseOklchString,
+  oklchToHex,
   formatOklch,
+  formatHex,
   OKLCHColor,
+  cleanOklchText,
 } from "@/utils/colorConversion";
 
 interface ConvertedColor {
   original: string;
-  hex: string;
   oklch: OKLCHColor;
+  hex: string;
 }
 
-const HexConverter = () => {
+const OklchToHexConverter = () => {
   const [input, setInput] = useState("");
   const [convertedColors, setConvertedColors] = useState<ConvertedColor[]>([]);
   const [hasErrors, setHasErrors] = useState(false);
   const { toast } = useToast();
 
-  const cleanText = (text: string): string => {
-    // Look for Hex patterns using regex and extract them
-    const hexPatterns = [
-      // Match #hex format
-      /#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})/g,
-      // Match hex without # (standalone)
-      /\b([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})\b/g,
-    ];
-
-    const foundColors: string[] = [];
-
-    hexPatterns.forEach((pattern) => {
-      let match;
-      while ((match = pattern.exec(text)) !== null) {
-        const hex = match[1];
-        foundColors.push(`#${hex}`);
-      }
-    });
-
-    // Remove duplicates and return
-    return [...new Set(foundColors)].join("\n");
-  };
-
   const handleCleanText = () => {
-    const cleanedText = cleanText(input);
+    const cleanedText = cleanOklchText(input);
     if (cleanedText) {
       setInput(cleanedText);
       toast({
         title: "Text cleaned!",
-        description: "Found Hex patterns and cleaned the input.",
+        description: "Found OKLCH patterns and cleaned the input.",
       });
     } else {
       toast({
-        title: "No Hex patterns found",
-        description: "Could not find valid Hex color patterns in the text.",
+        title: "No OKLCH patterns found",
+        description: "Could not find valid OKLCH color patterns in the text.",
         variant: "destructive",
       });
     }
@@ -69,7 +47,7 @@ const HexConverter = () => {
     if (!input.trim()) {
       toast({
         title: "Please enter some colors",
-        description: "Add Hex colors to convert them to OKLCH format.",
+        description: "Add OKLCH colors to convert them to HEX format.",
         variant: "destructive",
       });
       return;
@@ -80,18 +58,14 @@ const HexConverter = () => {
     let errorCount = 0;
 
     lines.forEach((line) => {
-      const hex = parseHexString(line);
-      if (hex) {
-        const oklch = hexToOklch(hex);
-        if (oklch) {
-          converted.push({
-            original: line.trim(),
-            hex,
-            oklch,
-          });
-        } else {
-          errorCount++;
-        }
+      const oklch = parseOklchString(line);
+      if (oklch) {
+        const hex = oklchToHex(oklch);
+        converted.push({
+          original: line.trim(),
+          oklch,
+          hex,
+        });
       } else {
         errorCount++;
       }
@@ -103,7 +77,7 @@ const HexConverter = () => {
       toast({
         title: "No valid colors found",
         description:
-          "Please check your Hex color format. Examples: #FF0000, #f00, FF0000, f00",
+          "Please check your OKLCH color format. Examples: oklch(92.8% 0.006 264.531) or 92.8% 0.006 264.531",
         variant: "destructive",
       });
       return;
@@ -135,47 +109,46 @@ const HexConverter = () => {
     });
   };
 
-  const copyAllOklch = () => {
-    const oklchValues = convertedColors
-      .map((color) => formatOklch(color.oklch))
+  const copyAllHex = () => {
+    const hexValues = convertedColors
+      .map((color) => formatHex(color.hex))
       .join("\n");
-    navigator.clipboard.writeText(oklchValues);
+    navigator.clipboard.writeText(hexValues);
     toast({
-      title: "All OKLCH values copied!",
+      title: "All HEX values copied!",
       description: `${convertedColors.length} color values copied to clipboard.`,
     });
   };
 
-  const exampleColors = `#FF0000
-#00FF00
-#0000FF
-#f00
-A52A2A
-800080`;
+  const exampleColors = `oklch(92.8% 0.006 264.531)
+oklch(62.8% 0.25 29)
+oklch(80% 0.15 142)
+92.8% 0.006 264.531
+50% 0.2 0`;
 
   return (
     <Card className="border-0 shadow-2xl rounded-4xl bg-white/80 backdrop-blur-sm h-full flex flex-col">
       <CardHeader className="pb-6 flex-shrink-0">
         <CardTitle className="font-satoshi text-lg font-semibold text-gray-900 flex items-center">
-          <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-          Hex to OKLCH converter
+          <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+          OKLCH to HEX converter
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col flex-1 space-y-6">
         <div className="flex-1 flex flex-col">
           <Textarea
-            placeholder={`Paste your Hex colors here, one per line: ${exampleColors}`}
+            placeholder={`Paste your OKLCH colors here, one per line: ${exampleColors}`}
             rows={10}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="flex-1 text-sm border-2 border-gray-200 rounded-3xl focus:border-blue-500 transition-colors resize-none font-mono bg-gradient-to-br from-blue-50 to-blue-100"
+            className="flex-1 text-sm border-2 border-gray-200 rounded-3xl focus:border-green-500 transition-colors resize-none font-mono bg-gradient-to-br from-green-50 to-green-100"
           />
         </div>
         <div className="flex gap-2 flex-shrink-0">
           <Button
             onClick={handleConvert}
             size="sm"
-            className="flex-1 bg-blue-500 border border-blue-700 hover:bg-blue-600 text-white font-semibold py-3 rounded-3xl hover:shadow-xl transition-all duration-200"
+            className="flex-1 bg-green-500 border border-green-700 hover:bg-green-600 text-white font-semibold py-3 rounded-3xl hover:shadow-xl transition-all duration-200"
           >
             Convert Colors
           </Button>
@@ -198,10 +171,10 @@ A52A2A
             <div className="flex items-center justify-between">
               <h4 className="font-semibold text-gray-900">Converted Colors</h4>
               <Button
-                onClick={copyAllOklch}
+                onClick={copyAllHex}
                 variant="outline"
                 size="sm"
-                className="rounded-2xl border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+                className="rounded-2xl border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
               >
                 <Copy size={16} className="mr-2" />
                 Copy All
@@ -224,31 +197,29 @@ A52A2A
                           variant="secondary"
                           className="text-xs rounded-xl mb-1"
                         >
-                          HEX
+                          OKLCH
                         </Badge>
                         <p className="font-mono text-xs text-gray-600 truncate">
-                          {formatHex(color.hex)}
+                          {formatOklch(color.oklch)}
                         </p>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0 mr-2">
                           <Badge
                             variant="secondary"
-                            className="text-xs rounded-xl mb-1 bg-blue-500 text-white"
+                            className="text-xs rounded-xl mb-1 bg-green-500 text-white"
                           >
-                            OKLCH
+                            HEX
                           </Badge>
                           <p className="font-mono text-xs text-gray-900 truncate">
-                            {formatOklch(color.oklch)}
+                            {formatHex(color.hex)}
                           </p>
                         </div>
                         <Button
-                          onClick={() =>
-                            copyToClipboard(formatOklch(color.oklch))
-                          }
+                          onClick={() => copyToClipboard(formatHex(color.hex))}
                           variant="ghost"
                           size="sm"
-                          className="h-6 w-6 p-0 rounded-xl hover:bg-blue-500 hover:text-white"
+                          className="h-6 w-6 p-0 rounded-xl hover:bg-green-500 hover:text-white"
                         >
                           <Copy size={12} />
                         </Button>
@@ -265,4 +236,4 @@ A52A2A
   );
 };
 
-export default HexConverter;
+export default OklchToHexConverter;

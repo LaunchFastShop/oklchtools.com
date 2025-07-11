@@ -68,7 +68,7 @@ const ColorConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 font-satoshi">
       <div className="container mx-auto px-4 py-8 max-w-6xl w-full">
-        <ColorConverterHeader />
+        <ColorConverterHeader title="OKLCH to Hex, RGB, HSL converter and more" />
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <ColorInput

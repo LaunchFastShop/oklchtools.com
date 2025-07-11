@@ -2,38 +2,22 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Palette, Eye, Lightbulb, Target, Zap } from "lucide-react";
+import { Eye, Lightbulb, Target, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import ColorConverterHeader from "@/components/ColorConverterHeader";
+import { SEO } from "@/components/SEO";
 
 const OKLCHInfo = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 font-satoshi">
-      <div className="container mx-auto px-4 py-8 max-w-4xl w-full">
+      <SEO canonicalUrl="https://oklchtools.com/oklch-info" />
+      <div className="container mx-auto px-4 py-8 max-w-6xl w-full">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-6">
-            <div className="bg-primary text-primary-foreground p-4 rounded-4xl mr-4">
-              <Palette size={32} />
-            </div>
-          </div>
-          <h1 className="text-5xl md:text-6xl text-primary-600 font-semibold mb-4">
-            What is OKLCH?
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover what OKLCH is and why OKLCH color format is the future of
-            digital design - a perceptually uniform color space designed for
-            modern web development and CSS.
-          </p>
-          <Link to="/">
-            <Button
-              variant="outline"
-              className="mt-6 rounded-3xl border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              <ArrowLeft size={16} className="mr-2" />
-              Back to Converter
-            </Button>
-          </Link>
-        </div>
+        <ColorConverterHeader
+          title="What is OKLCH?"
+          description="Learn what OKLCH is in CSS, what it stands for, specs and why use it."
+          withBackButton
+        />
 
         <div className="space-y-8">
           {/* Quick Answer Section */}
